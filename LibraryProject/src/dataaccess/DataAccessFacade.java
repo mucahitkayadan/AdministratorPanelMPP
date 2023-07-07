@@ -26,17 +26,26 @@ public class DataAccessFacade implements DataAccess {
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 	
 	//implement: other save operations
+	//added
 	public void saveNewMember(LibraryMember member) {
 		HashMap<String, LibraryMember> mems = readMemberMap();
 		String memberId = member.getMemberId();
 		mems.put(memberId, member);
 		saveToStorage(StorageType.MEMBERS, mems);	
 	}
-
 	@Override
-	public void saveNewBookCopy(BookCopy bookCopy) {
+	public void saveNewBook(Book book) {
 		HashMap<String, Book> books = readBooksMap();
-		String bookID = bookCopy.getBook().getIsbn();
+		String bookID = book.getIsbn();
+		books.put(bookID, book);
+		saveToStorage(StorageType.BOOKS, books);
+	}
+	@Override
+	public void saveNewUser(User user) {
+		HashMap<String, User> users = readUserMap();
+		String userID = user.getId();
+		users.put(userID, user);
+		saveToStorage(StorageType.USERS, users);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,7 +54,6 @@ public class DataAccessFacade implements DataAccess {
 		//   isbn -> Book
 		return (HashMap<String,Book>) readFromStorage(StorageType.BOOKS);
 	}
-	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, LibraryMember> readMemberMap() {
 		//Returns a Map with name/value pairs being
@@ -53,20 +61,14 @@ public class DataAccessFacade implements DataAccess {
 		return (HashMap<String, LibraryMember>) readFromStorage(
 				StorageType.MEMBERS);
 	}
-	
-	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, User> readUserMap() {
 		//Returns a Map with name/value pairs being
 		//   userId -> User
 		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
 	}
-	
-	
 	/////load methods - these place test data into the storage area
-	///// - used just once at startup  
-	
-		
+	///// - used just once at startup
 	static void loadBookMap(List<Book> bookList) {
 		HashMap<String, Book> books = new HashMap<String, Book>();
 		bookList.forEach(book -> books.put(book.getIsbn(), book));
@@ -77,13 +79,11 @@ public class DataAccessFacade implements DataAccess {
 		userList.forEach(user -> users.put(user.getId(), user));
 		saveToStorage(StorageType.USERS, users);
 	}
- 
 	static void loadMemberMap(List<LibraryMember> memberList) {
 		HashMap<String, LibraryMember> members = new HashMap<String, LibraryMember>();
 		memberList.forEach(member -> members.put(member.getMemberId(), member));
 		saveToStorage(StorageType.MEMBERS, members);
 	}
-	
 	static void saveToStorage(StorageType type, Object ob) {
 		ObjectOutputStream out = null;
 		try {
@@ -100,7 +100,6 @@ public class DataAccessFacade implements DataAccess {
 			}
 		}
 	}
-	
 	static Object readFromStorage(StorageType type) {
 		ObjectInputStream in = null;
 		Object retVal = null;
@@ -119,9 +118,6 @@ public class DataAccessFacade implements DataAccess {
 		}
 		return retVal;
 	}
-	
-	
-	
 	final static class Pair<S,T> implements Serializable{
 		
 		S first;
