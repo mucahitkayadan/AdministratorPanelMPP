@@ -1,6 +1,6 @@
 classDiagram
     class LibrarySystem {
-        -login(username: string, password: string): boolean
+        +login(username: string, password: string): boolean
     }
 
     class User {
@@ -88,6 +88,6 @@ classDiagram
     Member o-- CheckoutRecord
     MemberInfo <|-- Member
     BookInfo <|-- Book
-    Copy <-- Book
+    Copy "1" <-- "0..*" Book
     CheckoutRecord o-- CheckoutEntry
-    CheckoutEntry <-- Copy
+    CheckoutEntry "1" <-- "0..*" Copy
