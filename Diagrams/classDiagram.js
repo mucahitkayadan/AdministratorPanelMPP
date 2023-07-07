@@ -66,10 +66,10 @@ classDiagram
     }
 
     class MemberInfo {
-        +firstName: string
-        +lastName: string
-        +address: Address
-        +phoneNumber: string
+        -firstName: string
+        -lastName: string
+        -address: Address
+        -phoneNumber: string
     }
 
     class BookInfo {
