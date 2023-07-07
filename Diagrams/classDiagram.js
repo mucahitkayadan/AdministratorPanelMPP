@@ -88,6 +88,6 @@ classDiagram
     Member o-- CheckoutRecord
     MemberInfo <|-- Member
     BookInfo <|-- Book
-    Copy "1" <-- "0..*" Book
+    Copy "0..*" <-- "1" Book
     CheckoutRecord o-- CheckoutEntry
     CheckoutEntry "1" <-- "0..*" Copy
