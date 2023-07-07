@@ -44,7 +44,7 @@ final public class Book implements Serializable {
 		newArr[copies.length] = new BookCopy(this, copies.length +1, true);
 		copies = newArr;
 	}
-	public Book addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors,
+	public static Book addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors,
 						int numOfCopies){
 		Book book = new Book(isbn,title,maxCheckoutLength,authors);
 		for (int i = 0; i < numOfCopies; i++) {
