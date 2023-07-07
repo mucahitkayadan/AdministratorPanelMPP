@@ -73,10 +73,10 @@ classDiagram
     }
 
     class BookInfo {
-        +title: string
-        +ISBN: string
-        +authors: Author[]
-        +availability: boolean
+        -title: string
+        -ISBN: string
+        -authors: Author[]
+        -availability: boolean
     }
 
     LibrarySystem o-- User
