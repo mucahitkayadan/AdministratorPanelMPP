@@ -1,11 +1,11 @@
 classDiagram
     class LibrarySystem {
-        +login(username: string, password: string): boolean
+        -login(username: string, password: string): boolean
     }
 
     class User {
-        +username: string
-        +password: string
+        -username: string
+        -password: string
     }
 
     class Librarian {
@@ -19,50 +19,50 @@ classDiagram
     }
 
     class Member {
-        +memberNumber: string
-        +firstName: string
-        +lastName: string
-        +address: Address
-        +phoneNumber: string
-        +checkoutRecord: CheckoutRecord
+        -memberNumber: string
+        -firstName: string
+        -lastName: string
+        -address: Address
+        -phoneNumber: string
+        -checkoutRecord: CheckoutRecord
     }
 
     class Address {
-        +street: string
-        +city: string
-        +state: string
-        +zip: string
+        -street: string
+        -city: string
+        -state: string
+        -zip: string
     }
 
     class Author {
-        +firstName: string
-        +lastName: string
-        +address: Address
-        +phoneNumber: string
-        +credentials: string
-        +bio: string
+        -firstName: string
+        -lastName: string
+        -address: Address
+        -phoneNumber: string
+        -credentials: string
+        -bio: string
     }
 
     class Book {
-        +title: string
-        +ISBN: string
-        +authors: Author[]
-        +availability: boolean
+        -title: string
+        -ISBN: string
+        -authors: Author[]
+        -availability: boolean
     }
 
     class Copy {
-        +copyNumber: string
-        +book: Book
+        -copyNumber: string
+        -book: Book
     }
 
     class CheckoutRecord {
-        +checkoutEntries: CheckoutEntry[]
+        -checkoutEntries: CheckoutEntry[]
     }
 
     class CheckoutEntry {
-        +bookCopy: Copy
-        +checkoutDate: Date
-        +dueDate: Date
+        -bookCopy: Copy
+        -checkoutDate: Date
+        -dueDate: Date
     }
 
     class MemberInfo {
