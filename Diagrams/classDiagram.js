@@ -26,6 +26,12 @@ classDiagram
         -phoneNumber: string
         -checkoutRecord: CheckoutRecord
     }
+	class SystemController {
+		
+	}
+	class DataAccess {
+	
+	}
 
     class Address {
         -street: string
@@ -46,7 +52,6 @@ classDiagram
     class Book {
         -title: string
         -ISBN: string
-        -authors: Author[]
         -availability: boolean
     }
 
@@ -75,7 +80,6 @@ classDiagram
     class BookInfo {
         -title: string
         -ISBN: string
-        -authors: Author[]
         -availability: boolean
     }
 
@@ -88,6 +92,10 @@ classDiagram
     Member o-- CheckoutRecord
     MemberInfo <|-- Member
     BookInfo <|-- Book
-    Copy "0..*" <-- "1" Book
+    Copy "1..*" <-- Book
     CheckoutRecord o-- CheckoutEntry
     CheckoutEntry "1" <-- "0..*" Copy
+	SystemController <-- LibrarySystem
+	Book <-- SystemController
+	CheckoutRecord <-- Member
+	Author <-- Book
